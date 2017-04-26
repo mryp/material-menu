@@ -1,3 +1,33 @@
-<h1>
-  {{title}}
-</h1>
+<div class="container-root">
+  <!-- タイトルバー -->
+  <md-toolbar color="primary" class="container-header whiteframe-1dp">
+    <button md-icon-button (click)="sideNaviToggle()">
+      <i class="material-icons">{{menuIcon}}</i>
+    </button>
+    <span>{{title}}</span>
+  </md-toolbar>
+
+  <md-sidenav-container class="container-body">
+    <!-- サイドメニュー -->
+    <md-sidenav #sidenav class="sidenavi-side"
+      (open-start)="sideNaviOpenStart()"
+      (close-start)="sideNaviCloseStart()">
+      <md-nav-list class="sidenavi-itemlist">
+        <h3 md-subheader>グループ1</h3>
+        <md-list-item *ngFor="let item of naviLinkList">
+          <a md-line (click)="jumpPage(item.title, item.link)">{{item.title}}</a>
+        </md-list-item>
+      </md-nav-list>
+    </md-sidenav>
+
+    <!-- コンテンツ -->
+    <div class="app-content">
+      <md-card>
+        <md-card-header>
+          <md-card-title>カードタイトル</md-card-title>
+        </md-card-header>
+        <button md-raised-button color="accent">ボタン</button>
+      </md-card>
+    </div>
+  </md-sidenav-container>
+</div>
